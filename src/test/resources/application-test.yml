@@ -1,0 +1,6 @@
+app:
+  proxy:
+    cache-ttl: 30
+    proxy-line:
+      api-key: some-test-key
+      url: http://localhost:8085/api/

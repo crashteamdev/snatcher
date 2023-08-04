@@ -1,0 +1,43 @@
+{
+  "count": 2,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": 1,
+      "ip": "123.43.9.21",
+      "internal_ip": null,
+      "port_http": 63444,
+      "port_socks5": 63445,
+      "user": "test",
+      "username": "test",
+      "password": "test",
+      "order_id": 1,
+      "type": "1",
+      "ip_version": 4,
+      "country": "ru",
+      "date": "2023-07-07 11:01:45.113123+00:00",
+      "date_end": "2023-08-06T14:01:45.113123+03:00",
+      "tags": [],
+      "access_ips": []
+    },
+    {
+      "id": 2,
+      "ip": "123.456.789.45",
+      "internal_ip": null,
+      "port_http": 64250,
+      "port_socks5": 64251,
+      "user": "test",
+      "username": "test",
+      "password": "test",
+      "order_id": 2,
+      "type": "1",
+      "ip_version": 4,
+      "country": "ru",
+      "date": "2023-07-07 11:01:45.113123+00:00",
+      "date_end": "2023-08-06T14:01:45.113123+03:00",
+      "tags": [],
+      "access_ips": []
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet id="create-user-table" author="sagefreke">
+        <createTable tableName="app_user">
+            <column name="id" type="bigint"/>
+            <column name="name" type="varchar(128)"/>
+            <column name="email" type="varchar(128)"/>
+        </createTable>
+        <addPrimaryKey tableName="app_user" columnNames="id" constraintName="pk_app_user"/>
+        <addUniqueConstraint tableName="app_user" columnNames="name"
+                             constraintName="uk_user_name"/>
+        <createSequence sequenceName="user_id_seq" startValue="1" incrementBy="1"/>
+    </changeSet>
+
+    <changeSet id="create-user-product-table" author="sagefreke">
+        <createTable tableName="user_product">
+            <column name="id" type="bigint"/>
+            <column name="sku_id" type="BIGINT"/>
+            <column name="name" type="varchar(128)"/>
+            <column name="price" type="BIGINT"/>
+            <column name="query" type="TEXT"/>
+            <column name="address" type="TEXT"/>
+            <column name="user_id" type="bigint"/>
+            <column name="image_url" type="varchar(256)"/>
+        </createTable>
+        <addPrimaryKey tableName="user_product" columnNames="id" constraintName="pk_product"/>
+        <createSequence sequenceName="product_id_seq" startValue="1" incrementBy="1"/>
+        <addForeignKeyConstraint baseTableName="user_product"
+                                 baseColumnNames="user_id"
+                                 constraintName="fk_product_user"
+                                 referencedTableName="app_user"
+                                 referencedColumnNames="id"
+                                 deleteCascade="true"/>
+    </changeSet>
+
+    <changeSet id="create_review_table" author="sagefreke">
+        <createTable tableName="review">
+            <column name="id" type="bigint"/>
+            <column name="text" type="TEXT"/>
+            <column name="product_id" type="bigint"/>
+        </createTable>
+        <addPrimaryKey tableName="review" columnNames="id" constraintName="pk_review"/>
+        <createSequence sequenceName="review_id_seq" startValue="1" incrementBy="1"/>
+        <addForeignKeyConstraint baseTableName="review"
+                                 baseColumnNames="product_id"
+                                 constraintName="fk_review_product"
+                                 referencedTableName="user_product"
+                                 referencedColumnNames="id"
+                                 deleteCascade="true"/>
+    </changeSet>
+
+</databaseChangeLog>

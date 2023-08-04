@@ -1,0 +1,31 @@
+spring:
+  redis:
+    host: 0.0.0.0
+    port: 55000
+    password: redispw
+  datasource:
+    url: jdbc:postgresql://0.0.0.0:5432/snatcher_db
+    username: postgres
+    password: password
+    type: org.springframework.jdbc.datasource.SimpleDriverDataSource
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 12
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+        enable_lazy_load_no_trans: false
+    show-sql: false
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+
+app:
+  proxy:
+    cache-ttl: 30
+    proxy-line:
+      api-key:
+      url: https://panel.proxyline.net/api/
