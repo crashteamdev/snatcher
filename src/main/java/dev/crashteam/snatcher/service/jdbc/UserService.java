@@ -2,6 +2,7 @@ package dev.crashteam.snatcher.service.jdbc;
 
 import dev.crashteam.snatcher.mapper.ProductMapper;
 import dev.crashteam.snatcher.mapper.UserMapper;
+import dev.crashteam.snatcher.model.UserProductStatus;
 import dev.crashteam.snatcher.model.domain.User;
 import dev.crashteam.snatcher.model.domain.UserProduct;
 import dev.crashteam.snatcher.model.dto.product.UserProductCreateDto;
@@ -49,7 +50,9 @@ public class UserService {
         userProduct.setQuery(userProductDto.getQuery());
         userProduct.setPrice(userProductDto.getPrice());
         userProduct.setSkuId(userProductDto.getSkuId());
+        userProduct.setQuantity(userProductDto.getQuantity());
         userProduct.setUser(user);
+        userProduct.setProductStatus(UserProductStatus.created);
         userProductService.saveProduct(userProduct);
 
         UserDto userDto = userMapper.domainToDto(user);

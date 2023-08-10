@@ -18,4 +18,5 @@ public class UserProductCreateDto {
     private String address;
     private Long userId;
     private String imageUrl;
+    private Long quantity;
 }

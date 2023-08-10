@@ -1,4 +1,4 @@
-package dev.crashteam.snatcher.service.redis;
+package dev.crashteam.snatcher.service;
 
 import dev.crashteam.snatcher.exception.ProxyNotObtainedException;
 import dev.crashteam.snatcher.integration.ProxyLineIntegration;
@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 @RequiredArgsConstructor
@@ -22,6 +23,13 @@ public class ProxyService {
 
     @Value("${app.proxy.proxy-line.api-key}")
     private String apiKey;
+
+    public ProxySource getRandomProxy() {
+        List<ProxySource> proxies = getProxies();
+        int randomIndex = ThreadLocalRandom.current().nextInt(proxies.size()) % proxies.size();
+        return proxies.get(randomIndex);
+    }
+
     @Cacheable(value = "proxies")
     public List<ProxySource> getProxies() {
         List<ProxyLineResponse.ProxyLineResult> activeProxies = Optional

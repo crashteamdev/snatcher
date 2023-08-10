@@ -24,6 +24,9 @@ spring:
     open-in-view: false
 
 app:
+  browser:
+    uzum:
+      url: https://uzum.uz/ru
   proxy:
     cache-ttl: 30
     proxy-line:

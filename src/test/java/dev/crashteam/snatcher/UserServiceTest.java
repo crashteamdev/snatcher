@@ -1,6 +1,7 @@
 package dev.crashteam.snatcher;
 
 import dev.crashteam.snatcher.container.ContainerConfiguration;
+import dev.crashteam.snatcher.model.UserProductStatus;
 import dev.crashteam.snatcher.model.dto.product.UserProductCreateDto;
 import dev.crashteam.snatcher.model.dto.user.UserCreateDto;
 import dev.crashteam.snatcher.model.dto.user.UserDto;
@@ -39,6 +40,7 @@ class UserServiceTest extends ContainerConfiguration {
         productDto.setUserId(user.getId());
         productDto.setSkuId(4324234L);
         productDto.setName("Test product");
+        productDto.setQuantity(3L);
 
         UserProductCreateDto secondProductDto = new UserProductCreateDto();
         secondProductDto.setQuery("test product query");
@@ -48,6 +50,7 @@ class UserServiceTest extends ContainerConfiguration {
         secondProductDto.setUserId(user.getId());
         secondProductDto.setSkuId(4324234L);
         secondProductDto.setName("Test product");
+        secondProductDto.setQuantity(4L);
 
         userService.addProduct(user.getId(), productDto);
         userService.addProduct(user.getId(), secondProductDto);
@@ -55,6 +58,8 @@ class UserServiceTest extends ContainerConfiguration {
         UserDto userWithProducts = userService.getUser(createdUser.getId());
 
         Assertions.assertFalse(CollectionUtils.isEmpty(userWithProducts.getProducts()));
+        Assertions.assertTrue(userWithProducts.getProducts().stream().allMatch(it ->
+                it.getProductStatus().equals(UserProductStatus.created)));
     }
 
 }

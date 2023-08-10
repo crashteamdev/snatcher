@@ -2,6 +2,7 @@ package dev.crashteam.snatcher.model.dto.product;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import dev.crashteam.snatcher.model.UserProductStatus;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -16,4 +17,5 @@ public class UserProductUpdateDto {
     private String address;
     private String userId;
     private String imageUrl;
+    private UserProductStatus productStatus;
 }

@@ -2,7 +2,7 @@ package dev.crashteam.snatcher;
 
 import com.github.tomakehurst.wiremock.WireMockServer;
 import dev.crashteam.snatcher.configuration.WireMockConfig;
-import dev.crashteam.snatcher.service.redis.ProxyService;
+import dev.crashteam.snatcher.service.ProxyService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

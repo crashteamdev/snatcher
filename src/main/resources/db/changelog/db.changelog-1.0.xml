@@ -52,4 +52,15 @@
                                  deleteCascade="true"/>
     </changeSet>
 
+    <changeSet id="create_product_status_type" author="sagefreke">
+        <sql>CREATE TYPE product_status_type AS ENUM ('created', 'pending', 'succeeded')</sql>
+    </changeSet>
+
+    <changeSet id="add_status_and_quantity_columns" author="sagefreke">
+        <addColumn tableName="user_product">
+            <column name="quantity" type="bigint"/>
+            <column name="product_status" type="product_status_type" defaultValue="created"/>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>
